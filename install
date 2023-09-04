@@ -4,8 +4,10 @@
 sudo apt update && sudo upgrade -y
 
 # Install basic packages
-sudo apt install wget curl nano;
+sudo apt install wget curl nano git
 
+# Clone
+git clone --bare git@github.com:arthurfiorette/dotfiles.git $HOME/.dotfiles
 
 # Dotfiles config alias
 alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
