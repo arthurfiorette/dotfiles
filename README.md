@@ -1,7 +1,7 @@
 # dotfiles
 
 ```bash
-curl -Lks https://arthur.run/dotfiles/install | /bin/bash -x
+sh -c "$(curl -fsSL https://arthur.run/dotfiles/install)"
 ```
 
 <br />
