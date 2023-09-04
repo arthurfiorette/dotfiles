@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+
+# Update files
+sudo apt update && sudo upgrade -y
+
+# Install basic packages
+sudo apt install wget curl nano;
+
+
+# Dotfiles config alias
+alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'

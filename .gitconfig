@@ -1,0 +1,9 @@
+[user]
+	email = me@arthur.place
+	name = Arthur Fiorette
+[pull]
+	rebase = true
+[branch]
+	autosetuprebase = always
+[init]
+	defaultBranch = main
