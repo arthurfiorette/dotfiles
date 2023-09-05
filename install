@@ -16,7 +16,7 @@ fi" >> ~/.bashrc
 # Dotfiles repository
 if ! command -v config &> /dev/null
 then
-  git clone --bare git@github.com:arthurfiorette/dotfiles.git $HOME/.dotfiles || true
+  git clone --depth=1 --bare https://github.com/arthurfiorette/dotfiles.git $HOME/.dotfiles || exit 1
   alias config='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
   config config --local status.showUntrackedFiles no
   config fetch
@@ -30,13 +30,13 @@ then
   sudo chsh -s $(which zsh) # default shell
   sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" #oh-my-zsh
 
-  # ZSH plugins
-  git clone https://github.com/zsh-users/zsh-autosuggestions.git $ZSH_CUSTOM/plugins/zsh-autosuggestions # autossugestions
-  git clone https://github.com/zdharma-continuum/fast-syntax-highlighting.git $ZSH_CUSTOM/plugins/fast-syntax-highlighting # syntax highlight
-  git clone https://github.com/marlonrichert/zsh-autocomplete.git $ZSH_CUSTOM/plugins/zsh-autocomplete --depth=1 # autocomplete
-
   # ZSH theme
   curl -sS https://starship.rs/install.sh | sh
+
+  # ZSH plugins
+  sudo git clone --depth=1 https://github.com/zsh-users/zsh-autosuggestions.git $ZSH_CUSTOM/plugins/zsh-autosuggestions # autossugestions
+  sudo git clone --depth=1 https://github.com/zdharma-continuum/fast-syntax-highlighting.git $ZSH_CUSTOM/plugins/fast-syntax-highlighting # syntax highlight
+  sudo git clone --depth=1 https://github.com/marlonrichert/zsh-autocomplete.git $ZSH_CUSTOM/plugins/zsh-autocomplete # autocomplete
 fi
 
 # Sets up docker
@@ -59,6 +59,8 @@ fi
 if ! command -v node &> /dev/null
 then
   curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.5/install.sh | bash
+  . "$HOME/.nvm/nvm.sh"
+  nvm install --lts
   nvm alias default node # defaults version
   npm i -g pnpm typescript npm # updates default packages
 fi
