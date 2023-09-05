@@ -16,9 +16,9 @@ fi" >>~/.bashrc
 if [ ! -d $HOME/.dotfiles ]; then
   git clone --depth=1 --bare https://github.com/arthurfiorette/dotfiles.git $HOME/.dotfiles
   # I know its hard but sometimes we just accept I cannot do it with functions or aliases
-  /usr/bin/git --git-dir=$HOME/.config/ --work-tree=$HOME $@ config --local status.showUntrackedFiles no
-  /usr/bin/git --git-dir=$HOME/.config/ --work-tree=$HOME $@ fetch
-  /usr/bin/git --git-dir=$HOME/.config/ --work-tree=$HOME $@ checkout main --force
+  /usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME $@ config --local status.showUntrackedFiles no
+  /usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME $@ fetch
+  /usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME $@ checkout main --force
 fi
 
 # Sets up ZSH
