@@ -2,7 +2,7 @@
 
 
 # Update files
-sudo apt update && sudo upgrade -y
+sudo apt update && sudo apt upgrade -y
 
 # Install basic packages
 sudo apt install -y wget curl nano git
@@ -16,11 +16,11 @@ fi" >> ~/.bashrc
 # Dotfiles repository
 if ! command -v config &> /dev/null
 then
-  git clone --depth=1 --bare https://github.com/arthurfiorette/dotfiles.git $HOME/.dotfiles || exit 1
+  git clone --depth=1 --bare https://github.com/arthurfiorette/dotfiles.git $HOME/.dotfiles
   alias config='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
   config config --local status.showUntrackedFiles no
   config fetch
-  config checkout main origin/main
+  config checkout main --force
 fi
 
 # Sets up ZSH
