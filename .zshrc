@@ -21,18 +21,7 @@ plugins=(git docker docker-compose nvm npm node dotenv rust zsh-autosuggestions 
 # Loads oh my zsh
 source $ZSH/oh-my-zsh.sh
 
-#
-## User configuration
-#
-
-# Dotfiles config alias
-alias config='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
-
-# Node & nvm
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-alias p=pnpm # pnpm alias
-
-# Rust & Cargo
-. "$HOME/.cargo/env"
+# Loads .profile
+if [ -f ~/.profile ]; then
+    . ~/.profile
+fi
