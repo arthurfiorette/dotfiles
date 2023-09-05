@@ -7,42 +7,52 @@ sudo apt update && sudo upgrade -y
 sudo apt install -y wget curl nano git
 
 # Dotfiles repository
-git clone --bare git@github.com:arthurfiorette/dotfiles.git $HOME/.dotfiles || true
-alias config='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
-config config --local status.showUntrackedFiles no
-config fetch
-config checkout origin/main
+which config > /dev/null || {
+  git clone --bare git@github.com:arthurfiorette/dotfiles.git $HOME/.dotfiles || true
+  alias config='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
+  config config --local status.showUntrackedFiles no
+  config fetch
+  config checkout main origin/main
+}
 
 # Sets up ZSH
-sudo apt install -y zsh-autosuggestions zsh-syntax-highlighting zsh fonts-powerline
-sudo chsh -s $(which zsh) # default shell
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" #oh-my-zsh
+which zsh > /dev/null || {
+  sudo apt install -y zsh-autosuggestions zsh-syntax-highlighting zsh fonts-powerline
+  sudo chsh -s $(which zsh) # default shell
+  sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" #oh-my-zsh
 
-# ZSH plugins
-git clone https://github.com/zsh-users/zsh-autosuggestions.git $ZSH_CUSTOM/plugins/zsh-autosuggestions # autossugestions
-git clone https://github.com/zdharma-continuum/fast-syntax-highlighting.git $ZSH_CUSTOM/plugins/fast-syntax-highlighting # syntax highlight
-git clone https://github.com/marlonrichert/zsh-autocomplete.git $ZSH_CUSTOM/plugins/zsh-autocomplete --depth=1 # autocomplete
+  # ZSH plugins
+  git clone https://github.com/zsh-users/zsh-autosuggestions.git $ZSH_CUSTOM/plugins/zsh-autosuggestions # autossugestions
+  git clone https://github.com/zdharma-continuum/fast-syntax-highlighting.git $ZSH_CUSTOM/plugins/fast-syntax-highlighting # syntax highlight
+  git clone https://github.com/marlonrichert/zsh-autocomplete.git $ZSH_CUSTOM/plugins/zsh-autocomplete --depth=1 # autocomplete
 
-# ZSH theme
-curl -sS https://starship.rs/install.sh | sh
+  # ZSH theme
+  curl -sS https://starship.rs/install.sh | sh
+}
 
 # Sets up docker
-sudo apt install -y ca-certificates curl gnupg
-sudo install -m 0755 -d /etc/apt/keyrings
-curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
-sudo chmod a+r /etc/apt/keyrings/docker.gpg
-echo \
-  "deb [arch="$(dpkg --print-architecture)" signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu \
-  "$(. /etc/os-release && echo "$VERSION_CODENAME")" stable" | \
-  sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
-sudo apt update
-sudo apt install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
-sudo usermod -aG docker $(whoami)
+which docker > /dev/null || {
+  sudo apt install -y ca-certificates curl gnupg
+  sudo install -m 0755 -d /etc/apt/keyrings
+  curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
+  sudo chmod a+r /etc/apt/keyrings/docker.gpg
+  echo \
+    "deb [arch="$(dpkg --print-architecture)" signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu \
+    "$(. /etc/os-release && echo "$VERSION_CODENAME")" stable" | \
+    sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+  sudo apt update
+  sudo apt install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+  sudo usermod -aG docker $(whoami)
+}
 
 # Sets up Node & NVM
-curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.5/install.sh | bash
-nvm alias default node # defaults version
-npm i -g pnpm typescript npm # updates default packages
+which node > /dev/null || {
+  curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.5/install.sh | bash
+  nvm alias default node # defaults version
+  npm i -g pnpm typescript npm # updates default packages
+}
 
 # Sets up rust
-curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+which cargo > /dev/null || {
+  curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+}

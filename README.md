@@ -9,7 +9,7 @@ echo You key: `$(cat ~/.ssh/id_ed25519.pub)`
 
 # Setup your GPG key
 gpg --full-generate-key
-gpg --list-secret-keys --keyid-format=long | awk -F: '/^pub:/ { print $5 }'
+gpg --list-secret-keys --keyid-format=long
 gpg --armor --export #<key>
 
 # Runs installer
