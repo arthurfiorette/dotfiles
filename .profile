@@ -22,5 +22,5 @@ alias p=pnpm # pnpm alias
 
 # WSL related
 alias wsl=wsl.exe
-alias wsls=wsl.exe --shutdown
+alias wsls='wsl.exe --shutdown'
 alias exp=explorer.exe
