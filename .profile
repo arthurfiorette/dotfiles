@@ -24,6 +24,7 @@ alias p=pnpm # pnpm alias
 alias wsl=wsl.exe
 alias wsls='wsl.exe --shutdown'
 alias exp=explorer.exe
+alias dev='cd ~/dev'
 
 # bun completions
 [ -s "/home/hzk/.bun/_bun" ] && source "/home/hzk/.bun/_bun"
