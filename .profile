@@ -24,3 +24,10 @@ alias p=pnpm # pnpm alias
 alias wsl=wsl.exe
 alias wsls='wsl.exe --shutdown'
 alias exp=explorer.exe
+
+# bun completions
+[ -s "/home/hzk/.bun/_bun" ] && source "/home/hzk/.bun/_bun"
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"

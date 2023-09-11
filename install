@@ -24,7 +24,7 @@ fi
 # Sets up ZSH
 if ! command -v zsh &>/dev/null; then
   sudo apt install -y zsh-autosuggestions zsh-syntax-highlighting zsh fonts-powerline
-  
+
   # default shell
   chsh -s $(which zsh)
 
@@ -61,10 +61,21 @@ fi
 if ! command -v node &>/dev/null; then
   curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.5/install.sh | bash
   . "$HOME/.nvm/nvm.sh"
-  nvm install --lts
-  nvm alias default node       # defaults version
-  npm i -g pnpm typescript npm # updates default packages
+
+  # Install and uses node 20
+  nvm install 20
+  nvm alias default 20     
+  npm i -g pnpm typescript npm 
 fi
+
+# Sets up bun.js
+if ! command -v bun &>/dev/null; then
+  curl -fsSL https://bun.sh/install | bash
+
+  # Resets .zshrc
+  /usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME $@ checkout .zshrc --force
+fi
+
 
 # Sets up rust
 if ! command -v cargo &>/dev/null; then
