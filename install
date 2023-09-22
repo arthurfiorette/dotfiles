@@ -34,9 +34,9 @@ if ! command -v zsh &>/dev/null; then
   curl -sS https://starship.rs/install.sh | sh
 
   # ZSH plugins
-  git clone --depth=1 https://github.com/zsh-users/zsh-autosuggestions.git $ZSH_CUSTOM/plugins/zsh-autosuggestions                   # autossugestions
-  git clone --depth=1 https://github.com/zdharma-continuum/fast-syntax-highlighting.git $ZSH_CUSTOM/plugins/fast-syntax-highlighting # syntax highlight
-  git clone --depth=1 https://github.com/marlonrichert/zsh-autocomplete.git $ZSH_CUSTOM/plugins/zsh-autocomplete                     # autocomplete
+  sudo git clone --depth=1 https://github.com/zsh-users/zsh-autosuggestions.git $ZSH_CUSTOM/plugins/zsh-autosuggestions                   # autossugestions
+  sudo git clone --depth=1 https://github.com/zdharma-continuum/fast-syntax-highlighting.git $ZSH_CUSTOM/plugins/fast-syntax-highlighting # syntax highlight
+  sudo git clone --depth=1 https://github.com/marlonrichert/zsh-autocomplete.git $ZSH_CUSTOM/plugins/zsh-autocomplete                     # autocomplete
 
   # Resets .zshrc
   /usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME $@ checkout .zshrc --force
