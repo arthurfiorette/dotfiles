@@ -4,7 +4,7 @@
 sudo apt update && sudo apt upgrade -y
 
 # Install basic packages
-sudo apt install -y wget curl nano git
+sudo apt install -y wget curl nano git unzip
 
 # Loads .profile for bashrc too
 echo "# Loads .profile
@@ -66,8 +66,8 @@ if ! command -v node &>/dev/null; then
   . "$HOME/.nvm/nvm.sh"
 
   # Install and uses node 20
-  nvm install 20
-  nvm alias default 20     
+  nvm install v20
+  nvm alias default v20     
   npm i -g pnpm typescript npm 
 fi
 
