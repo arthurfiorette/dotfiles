@@ -24,22 +24,19 @@ fi
 # Sets up ZSH
 if ! command -v zsh &>/dev/null; then
   sudo apt install -y zsh-autosuggestions zsh-syntax-highlighting zsh fonts-powerline
-
-  # Loads zsh
-  eval "$(starship init zsh)"
-
+ 
   # default shell
   chsh -s $(which zsh)
 
   sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" #oh-my-zsh
 
   # ZSH theme
-  curl -sS https://starship.rs/install.sh | sh
+  curl -sSf https://starship.rs/install.sh | sh -s -- -y
 
   # ZSH plugins
-  git clone --depth=1 https://github.com/zsh-users/zsh-autosuggestions.git $ZSH_CUSTOM/plugins/zsh-autosuggestions                   # autossugestions
-  git clone --depth=1 https://github.com/zdharma-continuum/fast-syntax-highlighting.git $ZSH_CUSTOM/plugins/fast-syntax-highlighting # syntax highlight
-  git clone --depth=1 https://github.com/marlonrichert/zsh-autocomplete.git $ZSH_CUSTOM/plugins/zsh-autocomplete                     # autocomplete
+  git clone --depth=1 https://github.com/zsh-users/zsh-autosuggestions.git $HOME/.oh-my-zsh/custom/plugins/zsh-autosuggestions                   # autossugestions
+  git clone --depth=1 https://github.com/zdharma-continuum/fast-syntax-highlighting.git $HOME/.oh-my-zsh/custom/plugins/fast-syntax-highlighting # syntax highlight
+  git clone --depth=1 https://github.com/marlonrichert/zsh-autocomplete.git $HOME/.oh-my-zsh/custom/plugins/zsh-autocomplete                     # autocomplete
 
   # Resets .zshrc
   /usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME $@ checkout .zshrc --force
@@ -82,5 +79,5 @@ fi
 
 # Sets up rust
 if ! command -v cargo &>/dev/null; then
-  curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+  curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
 fi
