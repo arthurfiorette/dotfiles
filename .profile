@@ -1,3 +1,7 @@
+# autoload
+autoload -U compinit
+compinit -i
+
 # set PATH so it includes user's private bin if it exists
 if [ -d "$HOME/bin" ] ; then
     PATH="$HOME/bin:$PATH"
@@ -32,3 +36,5 @@ alias dev='cd ~/dev'
 # bun
 export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
+
+ 

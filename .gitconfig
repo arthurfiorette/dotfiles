@@ -9,3 +9,5 @@
 	defaultBranch = main
 [commit]
 	gpgsign = true
+[push]
+	autoSetupRemote = true

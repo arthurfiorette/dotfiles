@@ -8,7 +8,7 @@ export ZSH="$HOME/.oh-my-zsh"
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
-# ZSH_THEME="starship" 
+# ZSH_THEME="starship"
 eval "$(starship init zsh)" # Starship theme
 
 # Which plugins would you like to load?
@@ -16,7 +16,7 @@ eval "$(starship init zsh)" # Starship theme
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git docker docker-compose nvm npm node dotenv rust zsh-autosuggestions fast-syntax-highlighting zsh-autocomplete)
+plugins=(git docker docker-compose nvm npm node dotenv rust zsh-autosuggestions fast-syntax-highlighting zsh-autocomplete gh)
 
 # Loads oh my zsh
 source $ZSH/oh-my-zsh.sh
