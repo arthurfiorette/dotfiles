@@ -37,4 +37,9 @@ alias dev='cd ~/dev'
 export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
 
- 
+# Go
+export PATH=$PATH:/usr/local/go/bin
+
+function notty() {
+  true | ($@) 2>&1 | cat
+}
