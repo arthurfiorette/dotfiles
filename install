@@ -1,5 +1,10 @@
 #!/usr/bin/env bash
 
+# Inside GH Codespaces, the dotfiles is automatically ran as root.
+if [ "$CODESPACES" = true ]; then
+  export HOME=/home/codespace
+fi
+
 # Update files
 sudo apt update && sudo apt upgrade -y
 
@@ -8,9 +13,9 @@ sudo apt install -y wget curl nano git unzip
 
 # Loads .profile for bashrc too
 echo "# Loads .profile
-if [ -f ~/.profile ]; then
-    . ~/.profile
-fi" >>~/.bashrc
+if [ -f $HOME/.profile ]; then
+    . $HOME/.profile
+fi" >>$HOME/.bashrc
 
 # Dotfiles repository
 if [ ! -d $HOME/.dotfiles ]; then
@@ -75,7 +80,6 @@ if ! command -v bun &>/dev/null; then
   # Resets .zshrc
   /usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME $@ checkout .zshrc --force
 fi
-
 
 # Sets up rust
 if ! command -v cargo &>/dev/null; then
